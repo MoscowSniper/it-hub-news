@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавить категорию</title>
+</head>
+<body>
+<h1>Добавить категорию</h1>
+
+<form action="/admin/category/save" method="post">
+    <input type="text" name="name" placeholder="Название категории" required>
+    <input type="text" name="slug" placeholder="Slug (url-имя)" required>
+    <button type="submit">Сохранить</button>
+</form>
+
+
+<a th:href="@{/admin/categories}">Назад к списку</a>
+</body>
+</html>

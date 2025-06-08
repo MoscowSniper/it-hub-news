@@ -1,6 +1,5 @@
 package org.wndtn.ithubnews;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +14,8 @@ public class Category {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    @Builder.Default
+    private UUID id = UUID.randomUUID();
 
     @Column(nullable = false, unique = true)
     private String name;

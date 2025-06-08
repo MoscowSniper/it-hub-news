@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Категории</title>
+</head>
+<body>
+<h1>Список категорий</h1>
+
+<a th:href="@{/admin/categories/add}">Добавить новую категорию</a>
+<ul>
+    <li th:each="category : ${categories}">
+        <span th:text="${category.name}">Название</span>
+    </li>
+</ul>
+
+<a th:href="@{/admin}">Назад в админку</a>
+</body>
+</html>
