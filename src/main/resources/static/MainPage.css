@@ -1,0 +1,160 @@
+/* =====  Google Fonts  ===== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+/* =====  Цветовые переменные  ===== */
+:root {
+    --primary-100: #d1aaff;
+    --primary-200: #bb86fc;
+    --primary-300: #8d5cff;
+    --bg-100: #0e0e0e;
+    --bg-200: #181818;
+    --text-main: #f1f1f1;
+    --text-muted: #8a8a8a;
+}
+
+/* =====  Базовая типографика  ===== */
+body {
+    background: var(--bg-100);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;           /* убираем горизонтальный скролл от аним-фона */
+    padding-bottom: 4rem;
+}
+
+/* =====  Анимированный «аурный» фон  ===== */
+body::before {
+    content: "";
+    position: fixed;
+    top: -35%;
+    left: -35%;
+    width: 170%;
+    height: 170%;
+    pointer-events: none;
+    background:
+            radial-gradient(circle at 25% 25%, var(--primary-300) 0%, transparent 35%),
+            radial-gradient(circle at 75% 75%, var(--primary-200) 0%, transparent 35%),
+            radial-gradient(circle at 75% 25%, var(--primary-300) 0%, transparent 35%),
+            radial-gradient(circle at 25% 75%, var(--primary-200) 0%, transparent 35%);
+    filter: blur(140px) saturate(120%);
+    animation: auraMove 28s linear infinite alternate;
+    z-index: -1;
+}
+@keyframes auraMove {
+    0%   { transform: translate(0,0)   scale(1); }
+    100% { transform: translate(15%,8%) scale(1.2); }
+}
+
+/* =====  Заголовки  ===== */
+h1,h2,h3,h4 {
+    color: var(--primary-200);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+h1 {
+    font-size: 2.6rem;
+    text-shadow: 0 0 6px var(--primary-200), 0 0 14px var(--primary-300);
+}
+
+/* =====  Ссылки  ===== */
+a {
+    color: var(--primary-200);
+    text-decoration: none;
+    transition: color .25s ease, text-shadow .25s ease;
+}
+a:hover {
+    color: var(--primary-100);
+    text-shadow: 0 0 6px var(--primary-100);
+}
+
+/* =====  Кнопки  ===== */
+.btn-outline-secondary,
+.btn-primary {
+    position: relative;
+    font-weight: 500;
+    isolation: isolate;          /* чтобы свечение не размывало текст */
+    transition: color .25s ease, background .25s ease, border .25s ease;
+}
+.btn-outline-secondary {
+    border: 1px solid var(--primary-200);
+    color: var(--primary-200);
+    background: transparent;
+}
+.btn-outline-secondary:hover {
+    background: var(--primary-200);
+    color: var(--bg-100);
+}
+.btn-primary {
+    background: var(--primary-200);
+    border: 1px solid var(--primary-200);
+    color: var(--bg-100);
+}
+.btn-primary:hover {
+    background: var(--primary-100);
+    border-color: var(--primary-100);
+}
+
+/* =====  Поля ввода / поиск  ===== */
+.form-control {
+    background: var(--bg-200);
+    border: 1px solid var(--primary-200);
+    color: var(--text-main);
+    transition: border .25s ease, box-shadow .25s ease;
+}
+.form-control:focus {
+    border-color: var(--primary-100);
+    box-shadow: 0 0 0 0.25rem rgba(187,134,252,.35);
+}
+
+/* =====  Карточка новости (glass-card + неон-бордер)  ===== */
+.news-block {
+    position: relative;
+    background: rgba(24,24,24,0.55);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(255,255,255,.05);
+    backdrop-filter: blur(9px);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* динамическое неоновое свечение вокруг карточки */
+.news-block::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(130deg,var(--primary-200),var(--primary-300));
+    filter: blur(12px);
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity .25s ease;
+    z-index: -1;
+}
+.news-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+.news-block:hover::before {
+    opacity: .9;
+}
+
+/* =====  Мелкие детали  ===== */
+.text-muted  { color: var(--text-muted) !important; }
+.border-bottom { border-color:#333 !important; padding-bottom:1rem; margin-bottom:2.2rem; }
+
+/* =====  Адаптив  ===== */
+@media (max-width: 576px) {
+    h1{font-size:1.8rem}
+    .news-block{padding:1.25rem}
+}
+.news-block {
+    background: rgba(30, 30, 40, 0.75);
+    border-radius: 1rem;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(187, 134, 252, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+.news-block:hover {
+    box-shadow: 0 0 60px rgba(187, 134, 252, 0.4);
+}
